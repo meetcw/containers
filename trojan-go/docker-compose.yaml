@@ -7,6 +7,8 @@ services:
     restart: unless-stopped
     depends_on:
       - site
+    ports:
+      - 443:443
     volumes:
       - ./server.yaml.template:/server.yaml.template
       - acme:/acme
@@ -16,6 +18,8 @@ services:
     restart: unless-stopped
     environment:
       - DOMAIN=${DOMAIN:?}
+    ports:
+      - 80:80
     volumes:
       - ./config/default.template:/etc/nginx/templates/default.template
       - acme:/acme
